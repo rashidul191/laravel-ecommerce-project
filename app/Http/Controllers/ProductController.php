@@ -19,15 +19,15 @@ class ProductController extends Controller
         return ResponseHelper::Out('success', $data, 200);
     }
 
-    public function ListProductByRemark(Request $request)
-    {
-        $data = Product::where('remark', $request->remark)->with('brand', 'category')->get();
-        return ResponseHelper::Out('success', $data, 200);
-    }
-
     public function ListProductByBrand(Request $request)
     {
         $data = Product::where('brand_id', $request->id)->with('brand', 'category')->get();
+        return ResponseHelper::Out('success', $data, 200);
+    }
+
+    public function ListProductByRemark(Request $request)
+    {
+        $data = Product::where('remark', $request->remark)->with('brand', 'category')->get();
         return ResponseHelper::Out('success', $data, 200);
     }
 
@@ -45,11 +45,19 @@ class ProductController extends Controller
 
     public function ListReviewByProduct(Request $request)
     {
-        $data = ProductReview::where('product_id', '=', $request->id)->with(
-            ['customerProfile' => function ($query) {
-                $query->select('id', 'cus_name');
-            }]
-        )->get();
+
+        
+      
+        // dd($request);
+        $data = ProductReview::where('product_id', $request->product_id)
+        ->with(['profile' => function ($query) {
+            $query->select('id', 'cus_name');
+        }])
+        ->get();
+
+  
+
+
         return ResponseHelper::Out('success', $data, 200);
     }
 }
