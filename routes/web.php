@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,3 +40,10 @@ Route::get('/ListReviewByProduct/{product_id}', [ProductController::class, 'List
 
 // Policy
 Route::get('/PolicyByType/{type}', [PolicyController::class, 'PolicyByType']);
+
+
+// User Auth
+Route::get('/UserLogin/{UserEmail}', [UserController::class, 'UserLogin']);
+Route::get('/VerifyLogin/{UserEmail}/{OTP}', [UserController::class, 'VerifyLogin']);
+Route::get('/Logout', [UserController::class, 'Logout']);
+
