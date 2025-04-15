@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PolicyController;
+use App\Http\Controllers\ProductCartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductWishController;
 use App\Http\Controllers\ProfileController;
@@ -66,5 +67,7 @@ Route::middleware([TokenAuthenticate::class])->group(function () {
     Route::delete('/RemoveWishList/{product_id}', [ProductWishController::class, 'RemoveWishList']);
 
     // Product Cart
-    Route::get('/CreateCartList');
+    Route::get('/CartList', [ProductCartController::class, 'CartList']);
+    Route::put('/CreateCartList', [ProductCartController::class, 'CreateCartList']);
+    Route::delete('/DeleteCartList/{product_id}', [ProductCartController::class, 'DeleteCartList']);
 });
