@@ -4,10 +4,10 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductWishController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\TokenAuthenticate;
-use App\Models\ProductReview;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,4 +59,12 @@ Route::middleware([TokenAuthenticate::class])->group(function () {
 
     // Customer Review
     Route::post('/CreateProductReview', [ProductController::class, 'CreateProductReview']);
+
+    // Product Wishlist
+    Route::get('/ProductWishList', [ProductWishController::class, 'ProductWishList']);
+    Route::put('/CreateWishList/{product_id}', [ProductWishController::class, 'CreateWishList']);
+    Route::delete('/RemoveWishList/{product_id}', [ProductWishController::class, 'RemoveWishList']);
+
+    // Product Cart
+    Route::get('/CreateCartList', [])
 });
