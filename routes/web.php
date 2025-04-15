@@ -66,5 +66,5 @@ Route::middleware([TokenAuthenticate::class])->group(function () {
     Route::delete('/RemoveWishList/{product_id}', [ProductWishController::class, 'RemoveWishList']);
 
     // Product Cart
-    Route::get('/CreateCartList', [])
+    Route::get('/CreateCartList');
 });
