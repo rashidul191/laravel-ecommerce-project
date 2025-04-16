@@ -12,7 +12,7 @@ class ProductCartController extends Controller
     //
 
     public function CartList(Request $request)
-    {
+    {        
         $user_id = $request->header('id');
         $data = ProductCart::where('user_id', $user_id)->with('product')->get();
         return ResponseHelper::Out('success', $data, 200);

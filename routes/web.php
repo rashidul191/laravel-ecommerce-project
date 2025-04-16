@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\ProductCartController;
 use App\Http\Controllers\ProductController;
@@ -49,25 +50,29 @@ Route::get('/PolicyByType/{type}', [PolicyController::class, 'PolicyByType']);
 // User Auth
 Route::get('/UserLogin/{UserEmail}', [UserController::class, 'UserLogin']);
 Route::get('/VerifyLogin/{UserEmail}/{OTP}', [UserController::class, 'VerifyLogin']);
-Route::get('/Logout', [UserController::class, 'Logout']);
+Route::get('/Logout', [UserController::class, 'Logout'])->name('Logout');
 
 
 Route::middleware([TokenAuthenticate::class])->group(function () {
 
     // Customer Profile
-    Route::post('/CreateProfile', [ProfileController::class, 'CreateProfile']);
-    Route::get('/ReadProfile', [ProfileController::class, 'ReadProfile']);
+    Route::post('/CreateProfile', [ProfileController::class, 'CreateProfile'])->name('CreateProfile.create');
+    Route::get('/ReadProfile', [ProfileController::class, 'ReadProfile'])->name('ReadProfile.show');
 
     // Customer Review
-    Route::post('/CreateProductReview', [ProductController::class, 'CreateProductReview']);
+    Route::post('/CreateProductReview', [ProductController::class, 'CreateProductReview'])->name('CreateProductReview.create');
 
     // Product Wishlist
-    Route::get('/ProductWishList', [ProductWishController::class, 'ProductWishList']);
-    Route::put('/CreateWishList/{product_id}', [ProductWishController::class, 'CreateWishList']);
-    Route::delete('/RemoveWishList/{product_id}', [ProductWishController::class, 'RemoveWishList']);
+    Route::get('/ProductWishList', [ProductWishController::class, 'ProductWishList'])->name('ProductWishList.show');
+    Route::put('/CreateWishList/{product_id}', [ProductWishController::class, 'CreateWishList'])->name('CreateWishList.create');
+    Route::delete('/RemoveWishList/{product_id}', [ProductWishController::class, 'RemoveWishList'])->name('RemoveWishList.delete');
 
     // Product Cart
-    Route::get('/CartList', [ProductCartController::class, 'CartList']);
-    Route::put('/CreateCartList', [ProductCartController::class, 'CreateCartList']);
-    Route::delete('/DeleteCartList/{product_id}', [ProductCartController::class, 'DeleteCartList']);
+    Route::get('/CartList', [ProductCartController::class, 'CartList'])->name('CartList.show');
+    Route::put('/CreateCartList', [ProductCartController::class, 'CreateCartList'])->name('CreateCartList.create');
+    Route::delete('/DeleteCartList/{product_id}', [ProductCartController::class, 'DeleteCartList'])->name('DeleteCartList.delete');
+
+
+    // Invoice
+    Route::post('/InvoiceCreate', [InvoiceController::class, 'InvoiceCreate'])->name('InvoiceCreate.create');
 });

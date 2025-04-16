@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('tran_id', 100);
             $table->string('val_id', 100)->default(0);
             $table->enum('delivery_status', ['Pending', 'Processing', 'Completed']);
-            $table->string('payment_status');
+            $table->string('payment_status')->nullable();
 
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->restrictOnDelete()->restrictOnUpdate();
