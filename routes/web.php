@@ -25,8 +25,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Home Page
-Route::get('/', [HomeController::class, 'HomePage']);
-Route::get('/home', [HomeController::class, 'HomePage']);
+Route::get('/', [HomeController::class, 'HomePage'])->name('home');
+Route::get('/home', [HomeController::class, 'HomePage'])->name('home');
+
+Route::get('/about', function(){
+    return view('pages.about');
+})->name('about');
 
 
 // Brand List
