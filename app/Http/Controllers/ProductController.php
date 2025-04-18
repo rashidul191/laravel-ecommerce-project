@@ -40,11 +40,14 @@ class ProductController extends Controller
         return ResponseHelper::Out('success', $data, 200);
     }
 
+    public function ProductDetails(){
+        return view('pages.single-product');
+    }
+
     public function ProductDetailsById(Request $request)
     {
         $data = ProductDetail::where('product_id', '=', $request->id)->with('product', 'product.brand', 'product.category')->get();
-        // return ResponseHelper::Out('success', $data, 200);
-        return view('pages.single-product', compact('data'));
+        return ResponseHelper::Out('success', $data, 200);     
     }
 
     public function ListReviewByProduct(Request $request)

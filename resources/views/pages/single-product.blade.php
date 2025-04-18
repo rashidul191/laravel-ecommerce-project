@@ -1,8 +1,7 @@
 @extends('layout.app')
+@section('title', "Product Detail")
 @section('content')
-@include('components.common.menu-bar')
 
-{{ $data }}
-
-@include('components.common.footer')
+@include('components.common.breadcrumb')
+@include('components.product-details.product-details')
 @endsection

@@ -53,13 +53,13 @@
 <body>
 
     <!-- LOADER -->
-    <div class="preloader">
+    <!-- <div class="preloader">
         <div class="lds-ellipsis">
             <span></span>
             <span></span>
             <span></span>
         </div>
-    </div>
+    </div> -->
     <!-- END LOADER -->
 
 

@@ -1,9 +1,7 @@
 <div class="section small_pt pb_70">
     <div class="container">
 
-        <div class="row shop_container" id="byBrandProducts">
-
-           
+        <div class="row shop_container" id="byBrandProducts">           
 
         </div>
     </div>
@@ -12,7 +10,7 @@
 
 <script>
     // console.log(searchParams.get('id'));
-    async function catProducts() {
+    async function brandProducts() {
         const searchParams = new URLSearchParams(window.location.search);
         const brandID = searchParams.get('id');
         const res = await axios.get(`/ListProductByBrand/${brandID}`, );
@@ -45,20 +43,20 @@
                <div class="col-lg-3 col-md-4 col-6">
                 <div class="product">
                     <div class="product_img">
-                        <a href="#">
+                        <a href="/ProductDetails?id=${item.id}">
                             <img src="${item.image }" alt="${item.title}">
                         </a>
                         <div class="product_action_box">
                             <ul class="list_none pr_action_btn">
                                 <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
-                                <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                <li><a href="shop-compare.html" ><i class="icon-shuffle"></i></a></li>
+                                <li><a href="/ProductDetails?id=${item.id}" ><i class="icon-magnifier-add"></i></a></li>
                                 <li><a href="#"><i class="icon-heart"></i></a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="product_info">
-                        <h6 class="product_title"><a href="#">${item.title}</a></h6>
+                        <h6 class="product_title"><a href="/ProductDetails?id=${item.id}">${item.title}</a></h6>
                       ${priceHTML}
                         <div class="rating_wrap">
                             <div class="rating">
@@ -83,7 +81,11 @@
 
                 $('#byBrandProducts').append(EachItem);
             });
+
+            $('#pageTitleExt').text(res.data.data[0].brand.brandName);
+
+            // console.log(res.data.data[0].brand.brandName);
         }
     }
-    catProducts()
+    brandProducts()
 </script>

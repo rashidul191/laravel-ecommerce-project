@@ -16,8 +16,11 @@ class TokenAuthenticate
      */
     public function handle(Request $request, Closure $next): Response
     {
+        
         $token = $request->cookie('token');
-        $tokenData = JWTToken::ReadToken($token);
+   
+        $tokenData = JWTToken::ReadToken($token);      
+        // dd($tokenData);
         if( $tokenData == 'unauthorized'){
             return redirect('/userLogin');
         }else{

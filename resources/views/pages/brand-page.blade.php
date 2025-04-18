@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', "Brand Page")
+@section('title', "Brand")
 @section('content')
 
 @include('components.common.breadcrumb')

@@ -15,29 +15,29 @@
                     <div class="item">
                         <div class="product">
                             <div class="product_img">
-                                <a href="shop-product-detail.html">
+                                <a href="{{ route('ProductDetails', ['id'=>$featureProduct->id]) }}">
                                     <img src="{{ $featureProduct->image }}" alt="{{ $featureProduct->title }}">
                                 </a>
                                 <div class="product_action_box">
                                     <ul class="list_none pr_action_btn">
                                         <li class="add-to-cart"><a href="#"><i class="icon-basket-loaded"></i> Add To Cart</a></li>
-                                        <li><a href="shop-compare.html" class="popup-ajax"><i class="icon-shuffle"></i></a></li>
-                                        <li><a href="shop-quick-view.html" class="popup-ajax"><i class="icon-magnifier-add"></i></a></li>
+                                        <li><a href="shop-compare.html" ><i class="icon-shuffle"></i></a></li>
+                                        <li><a href="{{ route('ProductDetails', ['id'=>$featureProduct->id]) }}" ><i class="icon-magnifier-add"></i></a></li>
                                         <li><a href="#"><i class="icon-heart"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="product_info">
-                                <h6 class="product_title"><a href="#">{{ $featureProduct->title }}</a></h6>
+                                <h6 class="product_title"><a href="{{ route('ProductDetails', ['id'=>$featureProduct->id]) }}">{{ $featureProduct->title }}</a></h6>
                                 @if($featureProduct->discount_price > 0)
-                                            <span class="price"> TK {{ $featureProduct->discount_price }}</span>
-                                            <del>TK {{ $featureProduct->price }}</del>
-                                            <div class="on_sale">
-                                                <span>{{ $featureProduct->discount }}% Off</span>
-                                            </div>
-                                            @else
-                                            <span class="price"> TK {{ $featureProduct->price }}</span>
-                                            @endif
+                                <span class="price"> TK {{ $featureProduct->discount_price }}</span>
+                                <del>TK {{ $featureProduct->price }}</del>
+                                <div class="on_sale">
+                                    <span>{{ $featureProduct->discount }}% Off</span>
+                                </div>
+                                @else
+                                <span class="price"> TK {{ $featureProduct->price }}</span>
+                                @endif
                                 <div class="rating_wrap">
                                     <div class="rating">
                                         <div class="product_rate" style="width:<?php echo $featureProduct->star ?>%"></div>

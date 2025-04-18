@@ -18,6 +18,7 @@ class ProductWishController extends Controller
     public function CreateWishList(Request $request)
     {
         $user_id = $request->header('id');
+   
         $data = ProductWishe::updateOrCreate(
             ['user_id' => $user_id, 'product_id' => $request->product_id],
             ['user_id' => $user_id, 'product_id' => $request->product_id],

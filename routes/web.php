@@ -31,14 +31,17 @@ Route::get('/home', [HomeController::class, 'HomePage'])->name('home');
 Route::get('/about', function(){
     return view('pages.about');
 })->name('about');
+Route::get('/BrandPage', [BrandController::class, 'BrandPage'])->name('brand-by-product');
+Route::get('/CategoryPage', [CategoryController::class, 'CategoryPage'])->name('category-by-product');
+
+Route::get('/ProductDetails', [ProductController::class, 'ProductDetails'])->name('ProductDetails');
+
 
 
 // Brand List
-Route::get('/BrandPage', [BrandController::class, 'BrandPage'])->name('brand-by-product');
 Route::get('/BrandList', [BrandController::class, 'BrandList']);
 
 // CategoryList List
-Route::get('/CategoryPage', [CategoryController::class, 'CategoryPage'])->name('category-by-product');
 Route::get('/CategoryList', [CategoryController::class, 'CategoryList']);
 
 // Product List
@@ -56,6 +59,8 @@ Route::get('/PolicyByType/{type}', [PolicyController::class, 'PolicyByType']);
 
 
 // User Auth
+Route::get('/userLogin', [UserController::class, 'UserLoginPage']);
+
 Route::get('/UserLogin/{UserEmail}', [UserController::class, 'UserLogin']);
 Route::get('/VerifyLogin/{UserEmail}/{OTP}', [UserController::class, 'VerifyLogin']);
 Route::get('/Logout', [UserController::class, 'Logout'])->name('Logout');
@@ -72,12 +77,13 @@ Route::middleware([TokenAuthenticate::class])->group(function () {
 
     // Product Wishlist
     Route::get('/ProductWishList', [ProductWishController::class, 'ProductWishList'])->name('ProductWishList.show');
-    Route::put('/CreateWishList/{product_id}', [ProductWishController::class, 'CreateWishList'])->name('CreateWishList.create');
+    Route::get('/CreateWishList/{product_id}', [ProductWishController::class, 'CreateWishList'])->name('CreateWishList.create');
     Route::delete('/RemoveWishList/{product_id}', [ProductWishController::class, 'RemoveWishList'])->name('RemoveWishList.delete');
 
     // Product Cart
     Route::get('/CartList', [ProductCartController::class, 'CartList'])->name('CartList.show');
-    Route::put('/CreateCartList', [ProductCartController::class, 'CreateCartList'])->name('CreateCartList.create');
+    
+    Route::post('/CreateCartList', [ProductCartController::class, 'CreateCartList'])->name('CreateCartList.create');
     Route::delete('/DeleteCartList/{product_id}', [ProductCartController::class, 'DeleteCartList'])->name('DeleteCartList.delete');
 
 

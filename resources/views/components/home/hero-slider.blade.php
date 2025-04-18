@@ -12,7 +12,7 @@
                                 <div class="banner_content overflow-hidden">
                                     <h5 class="mb-3 staggered-animation font-weight-light" data-animation="slideInLeft" data-animation-delay="0.5s">Only TK{{ $heroSlider->price }}</h5>
                                     <h2 class="staggered-animation" data-animation="slideInLeft" data-animation-delay="1s">{{ $heroSlider->title }}</h2>
-                                    <a class="btn btn-fill-out rounded-0 staggered-animation text-uppercase" href="shop-left-sidebar.html" data-animation="slideInLeft" data-animation-delay="1.5s">Shop Now</a>
+                                    <a class="btn btn-fill-out rounded-0 staggered-animation text-uppercase" href="{{ route('ProductDetails', ["id"=> $heroSlider->product_id]) }}" data-animation="slideInLeft" data-animation-delay="1.5s">Shop Now</a>
                                 </div>
                             </div>
                         </div>

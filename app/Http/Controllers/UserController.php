@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
+    public function UserLoginPage(){
+        return view('pages.user-login');
+
+    }
     // User Create and Send OPT email
     public function UserLogin(Request $request)
     {
@@ -57,6 +61,6 @@ class UserController extends Controller
     // User Logout
     public function Logout()
     {
-        return redirect('/userLoginPage')->cookie('token', '', -1);
+        return redirect('/userLogin')->cookie('token', '', -1);
     }
 }

@@ -4,7 +4,7 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="page-title">
-                    <h1>{{View::getSections()['title']}}</h1>
+                    <h1>{{View::getSections()['title']}} : <span id="pageTitleExt"></span> </h1>
                 </div>
             </div>
             <div class="col-md-6">
