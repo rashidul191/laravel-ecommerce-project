@@ -16,8 +16,8 @@
                 @foreach ( $brands as $brand )
                     <div class="item">
                         <div class="categories_box">
-                            <a href="#">
-                                <img src="{{ $brand->brandImg }}" alt="cat_img1"/>
+                            <a href="{{ route('brand-by-product', ['id'=> $brand->id]) }}">
+                                <img src="{{ $brand->brandImg }}" alt="{{ $brand->brandName }}"/>
                                 <span>{{ $brand->brandName }}</span>
                             </a>
                         </div>

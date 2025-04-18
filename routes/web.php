@@ -34,6 +34,7 @@ Route::get('/about', function(){
 
 
 // Brand List
+Route::get('/BrandPage', [BrandController::class, 'BrandPage'])->name('brand-by-product');
 Route::get('/BrandList', [BrandController::class, 'BrandList']);
 
 // CategoryList List

@@ -18,7 +18,8 @@ class HomeController extends Controller
         $heroSliders = ProductSlider::all();
         $productQueries = Product::get();
         $productTabs = $productQueries->unique('remark');
-        // dd($categories);
-        return view('pages.home-page', compact('heroSliders', 'categories', 'brands', 'productTabs', 'productQueries'));
+        $featureProducts = $productQueries->where('remark', '=','featured');
+        // dd($featureProducts);
+        return view('pages.home-page', compact('heroSliders', 'categories', 'brands', 'productTabs', 'productQueries', 'featureProducts'));
     }
 }

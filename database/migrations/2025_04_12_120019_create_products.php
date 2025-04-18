@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('stock');
             $table->float('star');
 
-            $table->enum('remark',['popular', 'new', 'top', 'special', 'trending', 'regular']);
+            $table->enum('remark',['popular', 'new', 'top', 'special', 'trending', 'regular', 'featured']);
 
 
             $table->unsignedBigInteger('category_id');

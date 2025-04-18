@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class BrandController extends Controller
 {
     //
+
+    public function BrandPage(){
+        return view('pages.brand-page');
+    }
     public function BrandList(){
         $data = Brand::all();
         return ResponseHelper::Out("success", $data, 200);
