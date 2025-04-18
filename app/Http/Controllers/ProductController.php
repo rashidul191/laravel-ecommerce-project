@@ -43,7 +43,8 @@ class ProductController extends Controller
     public function ProductDetailsById(Request $request)
     {
         $data = ProductDetail::where('product_id', '=', $request->id)->with('product', 'product.brand', 'product.category')->get();
-        return ResponseHelper::Out('success', $data, 200);
+        // return ResponseHelper::Out('success', $data, 200);
+        return view('pages.single-product', compact('data'));
     }
 
     public function ListReviewByProduct(Request $request)

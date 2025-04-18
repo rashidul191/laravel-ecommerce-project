@@ -316,7 +316,7 @@
                             <a class="dropdown-toggle nav-link" href="javascript:void(0)" data-bs-toggle="dropdown">Categories</a>
                             <div class="dropdown-menu">
                                 <ul id="categoryItem">
-                                                                     
+
                                 </ul>
                             </div>
                         </li>
@@ -364,21 +364,20 @@
 <!-- END HEADER -->
 
 
-@section('script')
+
 <script>
-    async function Category(){
+    async function Category() {
         const res = await axios.get('/CategoryList');
 
-$('#categoryItem').empty();
+        $('#categoryItem').empty();
 
         // console.log();
         res?.data?.data?.forEach((item, index) => {
             // console.log(index);
-            let eachCatItem =`  <li><a class="dropdown-item nav-link nav_item" href="#">${item.categoryName}</a></li> `;
+            let eachCatItem = `  <li><a class="dropdown-item nav-link nav_item" href="{{ route('category-by-product') }}?id=${item.id}">${item.categoryName}</a></li> `;
             $('#categoryItem').append(eachCatItem);
         });
     }
 
     Category();
 </script>
-@endsection

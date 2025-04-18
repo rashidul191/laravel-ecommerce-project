@@ -9,7 +9,14 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     //
-    public function CategoryList(){
+    public function CategoryPage()
+    {
+        // return "hi";
+        return view('pages.category-page');
+    }
+
+    public function CategoryList()
+    {
         $data = Category::all();
         return ResponseHelper::Out("success", $data, 200);
     }

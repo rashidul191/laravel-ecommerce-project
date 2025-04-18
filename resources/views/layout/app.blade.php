@@ -11,7 +11,9 @@
     <meta name="keywords" content="ecommerce, electronics store, Fashion store, furniture store,  bootstrap 4, clean, minimal, modern, online store, responsive, retail, shopping, ecommerce store">
 
     <!-- SITE TITLE -->
-    <title>Apple Shop - eCommerce Website</title>
+    <title>@yield('title', 'Rashidul Shop - eCommerce Website')</title>
+
+    <!-- <title>Apple Shop - eCommerce Website</title> -->
     <!-- Favicon Icon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/favicon.png') }}">
     <!-- Animation CSS -->
@@ -41,6 +43,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
 
+
+    <!-- Script JS -->
+       <!-- Latest jQuery -->
+    <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{asset('assets/js/axios.min.js')}}"></script>
 </head>
 
 <body>
@@ -56,17 +63,16 @@
     <!-- END LOADER -->
 
 
-
+    @include('components.common.menu-bar')
     @yield('content')
+    @include('components.common.footer')
 
 
 
 
     <a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 
-    <!-- Latest jQuery -->
-    <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
-    <script src="{{asset('assets/js/axios.min.js')}}"></script>
+  
 
     <!-- popper min js -->
     <script src="{{asset('assets/js/popper.min.js')}}"></script>
@@ -96,9 +102,6 @@
     <script src="{{asset('assets/js/scripts.js')}}"></script>
     <!-- custom js -->
     <script src="{{asset('assets/js/custom.js')}}"></script>
-
-    <!-- Custom JS Code From Blade File -->
-    @yield('script')
 
 </body>
 

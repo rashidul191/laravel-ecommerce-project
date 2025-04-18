@@ -16,8 +16,8 @@ PAGE JS
 	/*===================================*/
 	$(window).on('load', function() {
 		setTimeout(function () {
-			$(".preloader").delay(700).fadeOut(700).addClass('loaded');
-		}, 800);
+			$(".preloader").delay(60).fadeOut(100).addClass('loaded');
+		}, 50);
 	});
 
 	/*===================================*

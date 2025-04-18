@@ -37,6 +37,7 @@ Route::get('/about', function(){
 Route::get('/BrandList', [BrandController::class, 'BrandList']);
 
 // CategoryList List
+Route::get('/CategoryPage', [CategoryController::class, 'CategoryPage'])->name('category-by-product');
 Route::get('/CategoryList', [CategoryController::class, 'CategoryList']);
 
 // Product List
@@ -46,7 +47,7 @@ Route::get('/ListProductByRemark/{remark}', [ProductController::class, 'ListProd
 // Product Slider
 Route::get('/ListProductSlider', [ProductController::class, 'ListProductSlider']);
 // Product Details
-Route::get('/ProductDetailsById/{id}', [ProductController::class, 'ProductDetailsById']);
+Route::get('/ProductDetailsById/{id}', [ProductController::class, 'ProductDetailsById'])->name('product_details');
 Route::get('/ListReviewByProduct/{product_id}', [ProductController::class, 'ListReviewByProduct']);
 
 // Policy

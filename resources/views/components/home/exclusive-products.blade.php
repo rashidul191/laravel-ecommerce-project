@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div class="product_info">
-                                        <h6 class="product_title"><a href="shop-product-detail.html">{{ $productQuery->title }}</a></h6>
+                                        <h6 class="product_title"><a href="{{ route('product_details',$productQuery->id) }}">{{ $productQuery->title }}</a></h6>
                                         <div class="product_price">
                                             @if($productQuery->discount_price > 0)
                                             <span class="price"> TK {{ $productQuery->discount_price }}</span>
