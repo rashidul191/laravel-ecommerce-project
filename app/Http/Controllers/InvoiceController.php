@@ -18,14 +18,11 @@ class InvoiceController extends Controller
 
     public function InvoiceCreate(Request $request)
     {
-        // DB::beginTransaction();
-        // try {
+        DB::beginTransaction();
+        try {
 
         $user_id = $request->header('id');
         $user_email = $request->header('email');
-
-
-
 
         $tran_id = uniqid();
         $delivery_status = 'Pending';
@@ -34,7 +31,6 @@ class InvoiceController extends Controller
         $Profile = CustomerProfile::where('user_id', '=', $user_id)->first();
         $cus_details = "Name: $Profile->cus_name, Address:$Profile->cus_address, City:$Profile->cus_city, Phone:$Profile->cus_phone";
         $ship_details = "Name: $Profile->ship_name, Address:$Profile->ship_address, City:$Profile->ship_city, Phone:$Profile->ship_phone";
-
 
         // dd($Profile);
 
@@ -78,12 +74,12 @@ class InvoiceController extends Controller
         $paymentMethod = SSLCommerz::InitiatePayment($Profile, $payable, $tran_id, $user_email, $shippingMethod);
 
         // dd($paymentMethod);
-        // DB::commit();
+        DB::commit();
 
         return ResponseHelper::Out('success', array(['paymentMethod' => $paymentMethod, 'payable' => $payable, 'vat' => $vat, 'total' => $total]), 200);
-        // } catch (Exception $e) {
-        // DB::rollBack();
-        // return ResponseHelper::Out('fail', $e, 200);
-        // }
+        } catch (Exception $e) {
+        DB::rollBack();
+        return ResponseHelper::Out('fail', $e, 200);
+        }
     }
 }

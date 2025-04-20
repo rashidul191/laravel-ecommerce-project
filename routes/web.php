@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\BusinessSettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InvoiceController;
@@ -90,3 +91,5 @@ Route::middleware([TokenAuthenticate::class])->group(function () {
     // Invoice
     Route::post('/InvoiceCreate', [InvoiceController::class, 'InvoiceCreate'])->name('InvoiceCreate.create');
 });
+
+Route::put('/BusinessSettingCreate', [BusinessSettingController::class, 'BusinessSettingCreate'])->name('business-setting.store');

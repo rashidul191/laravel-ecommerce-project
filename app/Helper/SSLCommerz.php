@@ -58,20 +58,16 @@ class SSLCommerz
     //     }
     // }
 
-
-
-
-
-
-
-
-
-
-
     static function InitiatePayment($Profile, $payable, $tran_id, $user_email, $shippingMethod)
     {
+
+
+        // dd($Profile,$payable, $tran_id, $user_email, $shippingMethod );
+
         try {
             $ssl = SslcommerzAccount::first();
+
+            // dd($ssl);
 
             if (!$ssl) {
                 throw new Exception("SSLCommerz credentials not configured.");
@@ -80,12 +76,19 @@ class SSLCommerz
             $response = Http::asForm()->post($ssl->init_url, [
                 "store_id" => $ssl->store_id,
                 "store_passwd" => $ssl->store_passwd,
+
+
                 "total_amount" => $payable,
                 "currency" => $ssl->currency,
                 "tran_id" => $tran_id,
-                "success_url" => "$ssl->success_url?tran_id=$tran_id",
-                "fail_url" => "$ssl->fail_url?tran_id=$tran_id",
-                "cancel_url" => "$ssl->cancel_url?tran_id=$tran_id",
+                // "success_url" => "$ssl->success_url?tran_id=$tran_id",
+                // "fail_url" => "$ssl->fail_url?tran_id=$tran_id",
+                // "cancel_url" => "$ssl->cancel_url?tran_id=$tran_id",
+
+                "success_url"    => $ssl->success_url . "?tran_id=" . urlencode($tran_id),
+                "fail_url"       => $ssl->fail_url . "?tran_id=" . urlencode($tran_id),
+                "cancel_url"     => $ssl->cancel_url . "?tran_id=" . urlencode($tran_id),
+
                 "ipn_url" => $ssl->ipn_url,
                 "cus_name" => $Profile->cus_name,
                 "cus_email" => $user_email,
@@ -112,7 +115,7 @@ class SSLCommerz
             ]);
 
             // dd($response);
-            return $response->json();
+            return $response->json('desc');
         } catch (Exception $e) {
             return [
                 'error' => $e->getMessage(),

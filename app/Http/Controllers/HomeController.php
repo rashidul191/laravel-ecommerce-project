@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\BusinessSetting;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductSlider;
@@ -18,8 +19,10 @@ class HomeController extends Controller
         $heroSliders = ProductSlider::all();
         $productQueries = Product::get();
         $productTabs = $productQueries->unique('remark');
-        $featureProducts = $productQueries->where('remark', '=','featured');
-        // dd($featureProducts);
-        return view('pages.home-page', compact('heroSliders', 'categories', 'brands', 'productTabs', 'productQueries', 'featureProducts'));
+        $featureProducts = $productQueries->where('remark', '=', 'featured');
+        $businessSetting = BusinessSetting::get();
+        $fb = BusinessSetting::where('key', 'facebook')->value('value');
+        // dd($businessSetting);
+        return view('pages.home-page', compact('heroSliders', 'categories', 'brands', 'productTabs', 'productQueries', 'featureProducts', 'businessSetting'));
     }
 }
