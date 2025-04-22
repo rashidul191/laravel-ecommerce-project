@@ -9,6 +9,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Product extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'short_des',
+        'price',
+        'discount',
+        'discount_price',
+        'stock',
+        'star',
+        'remark',
+        'category_id',
+        'brand_id',
+        'image'
+    ];
 
     public function brand(): BelongsTo
     {

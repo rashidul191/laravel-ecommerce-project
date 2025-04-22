@@ -21,24 +21,34 @@ class ProductController extends Controller
 
     // Product Create Method
     public function productCreate(Request $request)
-    {      
-       
-        // dd($request);
+    {
 
+        // dd($request->all());
         $img = $request->file('image');
 
-        dd($img);
+        $t = time();
+        $img = $request->file('image');
+        $getImgName = $img->getClientOriginalName();
+        $newCreateImgName = "{$t}-{$getImgName}";
+        $img->move(public_path('uploads'), $newCreateImgName);
 
-        // $t = time();
-        // $img = $request->file('img_url');
-        // $getImgName = $img->getClientOriginalName();
+        $img_url = "uploads/{$newCreateImgName}";
+        // dd($img_url);
 
-        // $newCreateImgName = "{$t}-{$getImgName}";
-        // $img_url = "uploads/{$newCreateImgName}";
-        // $img->move(public_path('uploads'), $newCreateImgName);
-
-
-
+        Product::create([
+            'title' => $request->input('title'),
+            'short_des' => $request->input('short_des'),
+            'price' => $request->input('price'),
+            'discount' => $request->input('discount'),
+            'discount_price' => $request->input('discount_price'),
+            'stock' => $request->input('stock'),
+            'star' => $request->input('star'),
+            'remark' => $request->input('remark'),
+            'category_id'=> $request->input('category_id'),
+            'brand_id'=> $request->input('brand_id'),
+            'image' => $img_url,
+        ]);
+        return back()->with('success', 'successfully product create');
     }
 
 

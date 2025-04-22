@@ -45,7 +45,7 @@
 
 
     <!-- Script JS -->
-       <!-- Latest jQuery -->
+    <!-- Latest jQuery -->
     <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
     <script src="{{asset('assets/js/axios.min.js')}}"></script>
 </head>
@@ -62,6 +62,8 @@
     </div> -->
     <!-- END LOADER -->
 
+ 
+
 
     @include('components.common.menu-bar')
     @yield('content')
@@ -72,7 +74,7 @@
 
     <a href="#" class="scrollup" style="display: none;"><i class="ion-ios-arrow-up"></i></a>
 
-  
+
 
     <!-- popper min js -->
     <script src="{{asset('assets/js/popper.min.js')}}"></script>

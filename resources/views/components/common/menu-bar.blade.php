@@ -50,9 +50,9 @@
                     <div class="d-flex align-items-center justify-content-center justify-content-md-start">
                         <div class="lng_dropdown me-2">
                             <select name="countries" class="custome_select">
-                                <option value='en' data-image="assets/images/eng.png" data-title="English">English</option>
-                                <option value='fn' data-image="assets/images/fn.png" data-title="France">France</option>
-                                <option value='us' data-image="assets/images/us.png" data-title="United States">United States</option>
+                                <option value='en' data-image="{{asset('assets/images/eng.png')}}" data-title="English">English</option>
+                                <option value='fn' data-image="{{asset('assets/images/fn.png')}}" data-title="France">France</option>
+                                <option value='us' data-image="{{asset('assets/images/us.png')}}" data-title="United States">United States</option>
                             </select>
                         </div>
                         <div class="me-3">
@@ -72,7 +72,13 @@
                         <ul class="header_list">
                             <li><a href="compare.html"><i class="ti-control-shuffle"></i><span>Compare</span></a></li>
                             <li><a href="wishlist.html"><i class="ti-heart"></i><span>Wishlist</span></a></li>
+
+                            @if(Cookie::has('token'))
+                            <li><a href="{{ route('Logout') }}"><i class="ti-remove"></i><span>Logout</span></a></li>
+                            @else
                             <li><a href="{{ route('userLogin') }}"><i class="ti-user"></i><span>Login</span></a></li>
+                            @endif
+
                         </ul>
                     </div>
                 </div>
@@ -83,8 +89,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg">
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    <img class="logo_light" src="assets/images/logo_light.png" alt="logo" />
-                    <img class="logo_dark" src="assets/images/logo_dark.png" alt="logo" />
+                    <img class="logo_light" src="{{asset('assets/images/logo_light.png')}}" alt="logo" />
+                    <img class="logo_dark" src="{{asset('assets/images/logo_dark.png')}}" alt="logo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false">
                     <span class="ion-android-menu"></span>

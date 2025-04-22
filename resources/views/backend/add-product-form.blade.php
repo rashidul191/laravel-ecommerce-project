@@ -1,5 +1,20 @@
 @extends('layout.app')
 @section('content')
+
+<div class="container">
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> {{ (session('success')) }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+</div>
 <section class="add-product-form-section">
     <div class="container">
         <form action="{{ route('product.create') }}" method="POST" class="row row-cols-3" enctype="multipart/form-data">
@@ -41,6 +56,14 @@
             <div class="form-group mb-3">
                 <label for="remark">Remark</label>
                 <input type="text" class="form-control" id="remark" name="remark" placeholder="remark" value="new">
+            </div>
+            <div class="form-group mb-3">
+                <label for="category_id">Category ID</label>
+                <input type="text" class="form-control" id="category_id" name="category_id" placeholder="remark" value="5">
+            </div>
+            <div class="form-group mb-3">
+                <label for="brand_id">Brand ID</label>
+                <input type="text" class="form-control" id="brand_id" name="brand_id" placeholder="remark" value="2">
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
