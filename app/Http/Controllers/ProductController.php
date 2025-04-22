@@ -12,7 +12,35 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    //
+
+    // View Product Create Form Method
+    public function index()
+    {
+        return view('backend.add-product-form');
+    }
+
+    // Product Create Method
+    public function productCreate(Request $request)
+    {      
+       
+        // dd($request);
+
+        $img = $request->file('image');
+
+        dd($img);
+
+        // $t = time();
+        // $img = $request->file('img_url');
+        // $getImgName = $img->getClientOriginalName();
+
+        // $newCreateImgName = "{$t}-{$getImgName}";
+        // $img_url = "uploads/{$newCreateImgName}";
+        // $img->move(public_path('uploads'), $newCreateImgName);
+
+
+
+    }
+
 
     public function ListProductByCategory(Request $request)
     {
@@ -30,7 +58,7 @@ class ProductController extends Controller
     {
         $data = Product::where('remark', $request->remark)->with('brand', 'category')->get();
 
-        
+
         return ResponseHelper::Out('success', $data, 200);
     }
 
@@ -40,14 +68,15 @@ class ProductController extends Controller
         return ResponseHelper::Out('success', $data, 200);
     }
 
-    public function ProductDetails(){
+    public function ProductDetails()
+    {
         return view('pages.single-product');
     }
 
     public function ProductDetailsById(Request $request)
     {
         $data = ProductDetail::where('product_id', '=', $request->id)->with('product', 'product.brand', 'product.category')->get();
-        return ResponseHelper::Out('success', $data, 200);     
+        return ResponseHelper::Out('success', $data, 200);
     }
 
     public function ListReviewByProduct(Request $request)

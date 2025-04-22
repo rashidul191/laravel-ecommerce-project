@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BusinessSettingController;
 use App\Http\Controllers\CategoryController;
@@ -60,11 +61,13 @@ Route::get('/PolicyByType/{type}', [PolicyController::class, 'PolicyByType']);
 
 
 // User Auth
-Route::get('/userLogin', [UserController::class, 'UserLoginPage']);
+Route::get('/userLogin', [UserController::class, 'UserLoginPage'])->name('userLogin');
 
 Route::get('/UserLogin/{UserEmail}', [UserController::class, 'UserLogin']);
+Route::post('/UserLoginToAdmin', [UserController::class, 'UserLoginToAdmin'])->name('UserLoginToAdmin');
 Route::get('/VerifyLogin/{UserEmail}/{OTP}', [UserController::class, 'VerifyLogin']);
 Route::get('/Logout', [UserController::class, 'Logout'])->name('Logout');
+
 
 
 Route::middleware([TokenAuthenticate::class])->group(function () {
@@ -87,9 +90,14 @@ Route::middleware([TokenAuthenticate::class])->group(function () {
     Route::post('/CreateCartList', [ProductCartController::class, 'CreateCartList'])->name('CreateCartList.create');
     Route::delete('/DeleteCartList/{product_id}', [ProductCartController::class, 'DeleteCartList'])->name('DeleteCartList.delete');
 
-
     // Invoice
     Route::post('/InvoiceCreate', [InvoiceController::class, 'InvoiceCreate'])->name('InvoiceCreate.create');
+
+    // Admin Dashboard
+    // Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+
+    // Route::get('/add-product', [ProductController::class, 'index' ])->name('product.index');
+    Route::post('/create-product', [ProductController::class, 'productCreate' ])->name('product.create');
 });
 
 Route::put('/BusinessSettingCreate', [BusinessSettingController::class, 'BusinessSettingCreate'])->name('business-setting.store');

@@ -11,13 +11,14 @@
                         <div class="heading_s1">
                             <h3>Login</h3>
                         </div>
-                        <form method="post">
+                        <form action="{{ route('UserLoginToAdmin') }}" method="POST">
+                            @csrf                         
                             <div class="form-group mb-3">
                                 <input type="text" required="" class="form-control" name="email" placeholder="Your Email">
                             </div>
-                            <div class="form-group mb-3">
+                            <!-- <div class="form-group mb-3">
                                 <input class="form-control" required="" type="password" name="password" placeholder="Password">
-                            </div>
+                            </div> -->
                             <div class="login_footer form-group mb-3">
                                 <div class="chek-form">
                                     <div class="custome-checkbox">

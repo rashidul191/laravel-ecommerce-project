@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
-    public function UserLoginPage(){
+    public function UserLoginPage()
+    {
         return view('pages.user-login');
-
     }
     // User Create and Send OPT email
     public function UserLogin(Request $request)
@@ -52,6 +52,24 @@ class UserController extends Controller
             );
             $token = JWTToken::CreateToken($UserEmail, $verification->id);
             return ResponseHelper::Out('success', '', 200)->cookie('token', $token, 60 * 24 * 60);
+        } else {
+            return ResponseHelper::Out('fail', null, 401);
+        }
+    }
+    // User Login To Admin page
+    public function UserLoginToAdmin(Request $request)
+    {
+        $UserEmail = $request->input('email');
+        $userGet = User::where('email', $UserEmail)->first();
+        // dd($userGet);
+        if ($userGet) {
+            $token = JWTToken::CreateToken($UserEmail, $userGet->id);
+            // ResponseHelper::Out('success', '', 200)->cookie('token', $token, 60 * 24 * 60);
+            // dd($addTokenToCookie);
+            return redirect()
+            ->route('admin.index')
+            ->with('success', 'User Login Successfully !')
+            ->cookie('token', $token, 60 * 24 * 60); // 60 days
         } else {
             return ResponseHelper::Out('fail', null, 401);
         }
