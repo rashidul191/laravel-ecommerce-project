@@ -44,11 +44,11 @@ class ProductController extends Controller
             'stock' => $request->input('stock'),
             'star' => $request->input('star'),
             'remark' => $request->input('remark'),
-            'category_id'=> $request->input('category_id'),
-            'brand_id'=> $request->input('brand_id'),
+            'category_id' => $request->input('category_id'),
+            'brand_id' => $request->input('brand_id'),
             'image' => $img_url,
         ]);
-        return back()->with('success', 'successfully product create');
+        return redirect()->route('admin.index')->with('success', 'successfully product create');
     }
 
 

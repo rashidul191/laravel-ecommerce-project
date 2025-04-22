@@ -1,20 +1,6 @@
 @extends('layout.app')
 @section('content')
 
-<div class="container">
-    @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Success!</strong> {{ (session('success')) }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    @if(session('error'))
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Error!</strong> {{ session('error') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-</div>
 <section class="add-product-form-section">
     <div class="container">
         <form action="{{ route('product.create') }}" method="POST" class="row row-cols-3" enctype="multipart/form-data">
